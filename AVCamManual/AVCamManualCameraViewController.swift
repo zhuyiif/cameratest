@@ -215,6 +215,9 @@ class AVCamManualCameraViewController: UIViewController, AVCaptureFileOutputReco
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         
+        
+        tap.numberOfTapsRequired = 2
+        
         self.view.addGestureRecognizer(tap)
         
     }
