@@ -133,6 +133,7 @@ class AVCamManualCameraViewController: UIViewController, AVCaptureFileOutputReco
     @objc dynamic var videoDeviceInput: AVCaptureDeviceInput?
     private var videoDeviceDiscoverySession: AVCaptureDeviceDiscoverySessionType?
     @objc dynamic var videoDevice: AVCaptureDevice?
+
     @objc dynamic var movieFileOutput: AVCaptureMovieFileOutput?
     @objc dynamic var photoOutput: AVCapturePhotoOutputType?
     @objc dynamic var stillImageOutput: AVCaptureStillImageOutput? //### iOS < 10.0
@@ -256,6 +257,8 @@ class AVCamManualCameraViewController: UIViewController, AVCaptureFileOutputReco
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
 
         self.present(alert, animated: true)
+        
+        
         
         
     }
@@ -1491,6 +1494,45 @@ class AVCamManualCameraViewController: UIViewController, AVCaptureFileOutputReco
     
     //MARK: ### Compatibility
     
+    @IBAction func zoomSlider(_ sender: UISlider) {
+        
+        
+        do {
+                   try self.videoDevice!.lockForConfiguration()
+        
+        if #available(iOS 11.0, *) {
+            print(String(format: "max %f", self.videoDevice!.maxAvailableVideoZoomFactor))
+            
+            let max = self.videoDevice!.maxAvailableVideoZoomFactor
+            let zoomValue = sender.value
+            
+            let  maxFloat = Float(max)
+                   
+            print(String(format: "zoom %f", zoomValue))
+            
+            if(zoomValue * maxFloat > 1 && zoomValue * maxFloat < Float(max)) {
+                
+            
+                   
+            self.videoDevice!.videoZoomFactor = CGFloat(zoomValue * maxFloat);
+            }
+            
+        } else {
+            // Fallback on earlier versions
+        }
+            
+            
+            self.videoDevice!.unlockForConfiguration()
+            
+            
+        }
+        catch let error {
+            NSLog("Could not lock device for configuration: \(error)")
+        }
+       
+        
+        
+    }
     @available(iOS, deprecated: 10.0)
     private func changeCamera() {
         self.cameraButton.isEnabled = false
