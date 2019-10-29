@@ -95,6 +95,7 @@
 				TargetAttributes = {
 					7A49F5991B38C02B003D7AF5 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = HZ32KGWJ68;
 						LastSwiftMigration = 0900;
 					};
 				};
@@ -104,6 +105,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -272,11 +274,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 3.1;
+				DEVELOPMENT_TEAM = HZ32KGWJ68;
 				INFOPLIST_FILE = "$(SRCROOT)/AVCamManual/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.AVCamManual";
+				MARKETING_VERSION = 3.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zack.avcamera;
 				PRODUCT_NAME = AVCamManual;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -293,11 +297,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 3.1;
+				DEVELOPMENT_TEAM = HZ32KGWJ68;
 				INFOPLIST_FILE = "$(SRCROOT)/AVCamManual/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.AVCamManual";
+				MARKETING_VERSION = 3.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zack.avcamera;
 				PRODUCT_NAME = AVCamManual;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;

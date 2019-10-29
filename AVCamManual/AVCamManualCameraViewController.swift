@@ -6,12 +6,12 @@
 //
 //
 /*
-Copyright (C) 2015 Apple Inc. All Rights Reserved.
-See LICENSE.txt for this sample’s licensing information
-
-Abstract:
-View controller for camera interface.
-*/
+ Copyright (C) 2015 Apple Inc. All Rights Reserved.
+ See LICENSE.txt for this sample’s licensing information
+ 
+ Abstract:
+ View controller for camera interface.
+ */
 
 import UIKit
 import AVFoundation
@@ -211,6 +211,50 @@ class AVCamManualCameraViewController: UIViewController, AVCaptureFileOutputReco
         self.sessionQueue.async {
             self.configureSession()
         }
+        
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        
+        self.view.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        print("Hello World")
+        
+        var point = sender.location(in: self.view)
+        
+        var pointOfInterest = CGPoint(x: 0,y :0) ;
+        let frameSize = self.view.bounds.size;
+        pointOfInterest = CGPoint(x:point.y / frameSize.height, y:1.0 - (point.x / frameSize.width));
+        
+        do {
+            try self.videoDevice!.lockForConfiguration()
+            
+            if (self.videoDevice!.isExposurePointOfInterestSupported) {
+                
+                self.videoDevice!.exposurePointOfInterest = point;
+            }
+            else if(self.videoDevice!.isFocusPointOfInterestSupported) {
+                self.videoDevice!.focusPointOfInterest = point;
+            }
+            
+            self.videoDevice!.unlockForConfiguration()
+        }
+        catch let error {
+            NSLog("Could not lock device for configuration: \(error)")
+        }
+        
+        let pointStr = String(format: "x:%f y:%f", pointOfInterest.x, pointOfInterest.y)
+        
+        let alert = UIAlertController(title: "set point of interest", message: pointStr, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+
+        self.present(alert, animated: true)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
